@@ -7,7 +7,7 @@ export class PrismaService implements OnModuleDestroy {
   private clients: { [key: string]: PrismaClient } = {};
 
   getClient(request: Request): PrismaClient {
-    const tenantId = request.params[0];
+    const tenantId = request.hostname.split('.')[0];
     const client = this.clients[tenantId];
 
     if (!client) {

@@ -24,6 +24,8 @@ services:
         - WORKSPACES=${WORKSPACES}
         - HOME=${REMOTE_HOME}
     container_name: ${CONTAINER_NAME}
+    extra_hosts:
+      - "practice_prisma_1.application practice_prisma_2.application practice_prisma_3.application practice_prisma_4.application:192.168.0.3"
     ports:
       - 3000:3000
     working_dir: ${WORKSPACES}
@@ -44,6 +46,8 @@ services:
       - type: volume
         source: vscode_extensions
         target: ${HOME}/.vscode-server/extensions
+    depends_on:
+      - db
 
   db:
     image: postgres:14-bullseye
