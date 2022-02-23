@@ -7,6 +7,13 @@ volumes:
     name: ${VSCODE_EXTENSIONS_VOLUME_NAME}
   node_modules:
     name: ${NODE_MODULES_VOLUME_NAME}
+  db_volume:
+    name: ${DB_VOLUME_NAME}
+
+networks:
+  container_network:
+    name: ${NETWORK_NAME}
+    external: true
 
 services:
   application:
@@ -20,6 +27,8 @@ services:
     working_dir: ${WORKSPACES}
     user: ${REMOTE_USER}
     tty: true
+    networks:
+      - container_network
     volumes:
       - type: bind
         source: .
@@ -33,3 +42,21 @@ services:
       - type: volume
         source: vscode_extensions
         target: ${HOME}/.vscode-server/extensions
+
+  db:
+    image: postgres:14-bullseye
+    container_name: ${CONTAINER_NAME}_db
+    env_file:
+      - .env.local
+    ports:
+      - 5432:5432
+    tty: true
+    networks:
+      - container_network
+    volumes:
+      - type: bind
+        source: ./db
+        target: /docker-entrypoint-initdb.d
+      - type: volume
+        source: db_volume
+        target: /var/lib/postgresql/data

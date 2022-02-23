@@ -1,6 +1,6 @@
 {
-  "name": "template_typescript",
-  "remoteUser": "template_typescript",
+  "name": "practice_prisma",
+  "remoteUser": "practice_prisma",
   "dockerComposeFile": "../docker-compose.dev.yaml",
   "service": "application",
   "postCreateCommand": "yarn install",
@@ -16,7 +16,8 @@
     "hbenl.vscode-test-explorer",
     "kavod-io.vscode-jest-test-adapter",
     "irongeek.vscode-env",
-    "streetsidesoftware.code-spell-checker"
+    "streetsidesoftware.code-spell-checker",
+    "Prisma.prisma"
   ],
   "settings": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
