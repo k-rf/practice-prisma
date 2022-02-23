@@ -1,12 +1,19 @@
 import { PrismaClient } from '@prisma/client';
 
-import { PrismaService } from '../src/libs/prisma.service';
+import { Uuid } from '../src/libs/uuid';
 
 const prisma = new PrismaClient();
 
 const main = async () => {
-  const service = new PrismaService();
-  await service.seed();
+  await prisma.user.createMany({
+    data: [
+      {
+        user_id: new Uuid().value,
+        email: 'john_doe@example.com',
+        name: 'john doe',
+      },
+    ],
+  });
 };
 
 main()

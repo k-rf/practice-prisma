@@ -1,6 +1,6 @@
 {
   "material-icon-theme.activeIconPack": "nest",
   "files.associations": {
-    "*.env.*": "env"
+    ".env.*": "env"
   }
 }

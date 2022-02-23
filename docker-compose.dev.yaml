@@ -24,6 +24,8 @@ services:
         - WORKSPACES=${WORKSPACES}
         - HOME=${REMOTE_HOME}
     container_name: ${CONTAINER_NAME}
+    ports:
+      - 3000:3000
     working_dir: ${WORKSPACES}
     user: ${REMOTE_USER}
     tty: true
@@ -46,6 +48,7 @@ services:
   db:
     image: postgres:14-bullseye
     container_name: ${CONTAINER_NAME}_db
+    command: postgres -c 'max_connections=1000'
     env_file:
       - .env.local
     ports:
