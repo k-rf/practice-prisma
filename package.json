@@ -15,7 +15,8 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main"
+    "start:prod": "node dist/main",
+    "migrate": "dotenv -e .env.local -- prisma migrate dev"
   },
   "lint-staged": {
     "*.{tsx,ts,js}": [
@@ -36,7 +37,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
-    "dotenv-cli": "^4.1.1",
+    "dotenv-cli": "^5.0.0",
     "esbuild-register": "^3.2.1",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
@@ -53,6 +54,7 @@
     "lint-staged": "^12.1.2",
     "prettier": "^2.5.1",
     "prisma": "^3.10.0",
+    "supertest": "^6.2.2",
     "ts-jest": "^27.1.3",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
