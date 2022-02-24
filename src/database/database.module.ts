@@ -9,7 +9,7 @@ const prismaClientProvider: FactoryProvider<PrismaClient> = {
   provide: PrismaClient,
   scope: Scope.REQUEST,
   inject: [REQUEST, PrismaService],
-  useFactory: (request: Request, service: PrismaService) =>
+  useFactory: (request: Request<{ tenant: string }>, service: PrismaService) =>
     service.getClient(request),
 };
 

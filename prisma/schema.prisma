@@ -15,4 +15,11 @@ model User {
   name    String?
   email   String  @unique
   isAdmin Boolean @default(false)
+  Post    Post[]
+}
+
+model Post {
+  id          String @id @db.Uuid
+  user        User   @relation(fields: [userUser_id], references: [user_id])
+  userUser_id String @db.Uuid
 }

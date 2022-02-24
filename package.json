@@ -16,7 +16,8 @@
     "start:dev": "dotenv -e .env.local -- nest start --watch",
     "start:debug": "dotenv -e .env.local -- nest start --debug --watch",
     "start:prod": "node dist/main",
-    "migrate": "dotenv -e .env.local -- prisma migrate dev",
+    "test": "dotenv -e .env.test.local -- yarn jest",
+    "migrate": "dotenv -e .env.local -- prisma/migration.sh",
     "seed": "dotenv -e .env.local -- prisma db seed"
   },
   "lint-staged": {

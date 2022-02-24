@@ -10,7 +10,7 @@ def elapsed(func):
         end = datetime.now()
 
         elapsed = end - start
-        print(f'elapsed: {elapsed}s')
+        print(f'elapsed: {elapsed}')
 
     return wrapper
 
@@ -21,7 +21,7 @@ def fetch(sub):
 @elapsed
 def main():
     with futures.ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
-        races = [executor.submit(fetch, f'practice_prisma_{x}') for x in [x for x in range(1, 41)] * 10]
+        races = [executor.submit(fetch, f'practice_prisma_{x}') for x in [x for x in range(1, 201)] * 50]
         (done, notdone) = futures.wait(races)
 
 if __name__ == '__main__':

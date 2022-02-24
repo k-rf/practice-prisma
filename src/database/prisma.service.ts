@@ -6,8 +6,8 @@ import { Request } from 'express';
 export class PrismaService implements OnModuleDestroy {
   private clients: { [key: string]: PrismaClient } = {};
 
-  getClient(request: Request): PrismaClient {
-    const tenantId = request.hostname.split('.')[0];
+  getClient(request: Request<{ tenant: string }>): PrismaClient {
+    const tenantId = request.params.tenant;
     const client = this.clients[tenantId];
 
     if (!client) {
@@ -19,6 +19,8 @@ export class PrismaService implements OnModuleDestroy {
         },
       });
     }
+
+    this.clients[tenantId] = new PrismaClient();
 
     return this.clients[tenantId];
   }
